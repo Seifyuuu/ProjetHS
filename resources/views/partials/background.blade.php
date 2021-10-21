@@ -1,7 +1,13 @@
 <div class="slider-area">	
     <div class="slider-wrapper">
         @foreach ($backgrounds as $item)
-        <div class="single-slide" style="background-image: url('{{'img/' . $item->img}}');">
+
+
+        @if (Storage::disk('public')->exists('img/' . $item->img))
+            <div class="single-slide" style="background-image: url('{{'img/' . $item->img}}');">
+        @else
+            <div class="single-slide" style="background-image: url('{{$item->img}}');">
+        @endif               
             <div class="slider-content">
                 <div class="container">
                     <div class="row">

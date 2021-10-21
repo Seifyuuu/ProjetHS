@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-success">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">Go back to the website ! </a>
+      <a class="navbar-brand" href="/">Hi {{Auth::user()->name}}</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -42,10 +42,34 @@
           <li class="nav-item">
             <a class="nav-link" href="/back/user">Users</a>
           </li>
+          <li class="nav-item">
+            <div class="dropdown">
+              <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-user"></i>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">My Courses</a></li>
+                <li><a class="dropdown-item" href="#">My Profile</a></li>
+              </ul>
+            </div>
+          </li>
         </ul>
-         <div>
-            <button class="btn btn-white shadow"><a style="text-decoration: none" href="">Logout</a></button>
 
+         <div>
+          
+          <form action="{{ route('logout') }}" method="post">
+              @csrf
+
+              <button class="btn btn-white shadow" type="submit">
+                  <a href="#">
+
+                      <i class='bx bx-log-out' id="log_out"></i>
+
+
+                  </a>
+
+              </button>
+          </form>
          </div>
       </div>
     </div>

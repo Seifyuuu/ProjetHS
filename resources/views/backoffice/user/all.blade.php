@@ -13,7 +13,9 @@
                 <th scope="col">Email</th>
                 <th scope="col">Password</th>
                 <th scope="col">Rôle</th>
-                <th scope="col">Actions</th>
+                @can('view', $user)
+                <th scope="col">Actions</th>    
+                @endcan
             </tr>
             </thead>
             <tbody>
@@ -24,15 +26,18 @@
                     <td>{{$item->email}}</td>
                     <td>{{$item->password}}</td>
                     <td>{{$item->role->name}}</td>
+
                     <td class=""> 
                         <div class="d-flex">
                             
                             <a class="btn btn-success" href="{{route("user.edit", $item->id)}}">Edit</a>&nbsp;&nbsp;
+                            @can('delete', $item)
                             <form action="{{route("user.destroy", $item->id)}}" method="POST">
                                 @method('delete')
                                 @csrf
                                 <button class="btn btn-danger" type="submit">Delete</button>
                               </form>
+                            @endcan
                         </div>
                     </td>
                 </tr>

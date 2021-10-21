@@ -23,6 +23,7 @@ use App\Models\Nav;
 use App\Models\Pricing;
 use App\Models\Testimonial;
 use App\Models\Trainer;
+use App\Models\User;
 use Database\Seeders\RoleSeeder;
 use Illuminate\Support\Facades\Route;
 
@@ -36,8 +37,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -59,29 +58,23 @@ Route::get('/', function(){
     return view("site.home", compact("navitems", "backgrounds", "about", "classes", "trainers", "galleries", "events", "pricing", "testimonials", "footer"));
 });
 
-
-
 Route::get('/back', function () {
-    return view("backoffice.back");
+    $user = User::all();
+    return view("backoffice.back", compact("user"));
 })->middleware(['auth']);
 
 
-
-
-
-
-
-Route::resource('/back/nav', NavController::class);
-Route::resource('/back/background', BackgroundController::class);
-Route::resource('/back/classe', ClasseController::class);
-Route::resource('/back/event', EventController::class);
-Route::resource('/back/footer', FooterController::class);
-Route::resource('/back/gallery', GalleryController::class);
-Route::resource('/back/pricing', PricingController::class);
-Route::resource('/back/role', RoleSeeder::class);
-Route::resource('/back/schedule', ScheduleController::class);
-Route::resource('/back/testimonial', TestimonialController::class);
-Route::resource('/back/titre', TitreController::class);
-Route::resource('/back/trainer', TrainerController::class);
-Route::resource('/back/about', AboutController::class);
-Route::resource('/back/user', UserController::class);
+Route::resource('/back/nav', NavController::class)->middleware(["auth", "manager"]);
+Route::resource('/back/background', BackgroundController::class)->middleware(["auth", "manager"]);
+Route::resource('/back/classe', ClasseController::class)->middleware(["auth","coach"]);
+Route::resource('/back/event', EventController::class)->middleware(["auth", "manager"]);
+Route::resource('/back/footer', FooterController::class)->middleware(["auth", "manager"]);
+Route::resource('/back/gallery', GalleryController::class)->middleware(["auth", "manager"]);
+Route::resource('/back/pricing', PricingController::class)->middleware(["auth", "manager"]);
+Route::resource('/back/role', RoleSeeder::class)->middleware(["auth", "manager"]);
+Route::resource('/back/schedule', ScheduleController::class)->middleware(["auth", "manager"]);
+Route::resource('/back/testimonial', TestimonialController::class)->middleware(["auth", "manager"]);
+Route::resource('/back/titre', TitreController::class)->middleware(["auth", "manager"]);
+Route::resource('/back/trainer', TrainerController::class)->middleware(["auth", "manager"]);
+Route::resource('/back/about', AboutController::class)->middleware(["auth", "manager"]);
+Route::resource('/back/user', UserController::class)->middleware(["auth", "manager"]);
