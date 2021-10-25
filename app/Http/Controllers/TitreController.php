@@ -14,7 +14,8 @@ class TitreController extends Controller
      */
     public function index()
     {
-        
+        $titre = Titre::all();
+        return view("backoffice.titre.all", compact("titre"));
     }
 
     /**
@@ -57,7 +58,7 @@ class TitreController extends Controller
      */
     public function edit(Titre $titre)
     {
-        //
+        return view("backoffice.titre.edit", compact("titre"));
     }
 
     /**
@@ -69,7 +70,10 @@ class TitreController extends Controller
      */
     public function update(Request $request, Titre $titre)
     {
-        //
+        $titre->title = $request->title;
+        $titre->subtitle = $request->subtitle;
+        $titre->save();
+        return redirect()->route("titre.index");
     }
 
     /**

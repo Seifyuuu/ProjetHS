@@ -5,9 +5,10 @@
 <div class="mt-4 d-flex justify-content-center">
     <a class="btn btn-success" href="{{route("testimonial.create")}}">Add + </a>
 </div>
+
 <section class="d-flex justify-content-center">
     <div class="w-50 d-flex flex-col mt-3">
-        <table class="table w-100">
+        <table class="table w-100 table table-dark table-striped">
             <thead>
             <tr>
                 <th scope="col">#</th>

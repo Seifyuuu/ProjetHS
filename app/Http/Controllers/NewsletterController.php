@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewsletterMail;
 use App\Models\Newsletter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class NewsletterController extends Controller
 {
@@ -36,11 +38,13 @@ class NewsletterController extends Controller
      */
     public function store(Request $request)
     {
+
         $newsletter = new Newsletter();
         $newsletter->email = $request->email;
         $newsletter->save();
 
-        return redirect()->route("newsletter.index");
+        Mail::to($request->email)->send(new NewsletterMail());
+        return redirect()->back()->with("message", "You're registered for the newsletter ! ");
     }
 
     /**
@@ -85,6 +89,7 @@ class NewsletterController extends Controller
      */
     public function destroy(Newsletter $newsletter)
     {
-        //
+        $newsletter->delete();
+        return redirect()->route("newsletter.index");
     }
 }

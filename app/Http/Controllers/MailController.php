@@ -42,7 +42,7 @@ class MailController extends Controller
         $mail->status = "non lu";
         $mail->msg = $request->msg;
         $mail->save();
-        return redirect()->route("mail.index", compact("mail"))->with("message", "message sent");
+        return redirect()->back()->with("messageFooter", "E-mail sent");
 
     }
 

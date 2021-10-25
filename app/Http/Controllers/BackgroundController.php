@@ -26,7 +26,7 @@ class BackgroundController extends Controller
      */
     public function create()
     {
-        //
+        return view("backoffice.background.create");
     }
 
     /**
@@ -37,7 +37,14 @@ class BackgroundController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $background = new Background();
+        Storage::disk("public")->delete("img/"  . $background->img);
+        $background->img = $request->file("img")->hashName();
+        $background->text = $request->text;
+        $background->save();
+        $request->file("img")->storePublicly("img", "public");
+
+        return redirect()->route("background.index")->with("messageC", "Created");
     }
 
     /**
@@ -88,6 +95,7 @@ class BackgroundController extends Controller
      */
     public function destroy(Background $background)
     {
-        //
+        $background->delete();
+        return redirect()->back()->with("messageD", "Deleted");
     }
 }
