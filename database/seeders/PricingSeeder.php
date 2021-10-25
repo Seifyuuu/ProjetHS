@@ -16,7 +16,7 @@ class PricingSeeder extends Seeder
     {
         DB::table('pricings')->insert([
             [
-                "name"=>"silver",
+                "name"=>"Silver",
                 "price"=>30,
                 "text1"=>"Free T-Shirt & swags",
                 "text2"=>"Free of all message treatments",

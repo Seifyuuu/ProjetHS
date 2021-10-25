@@ -13,9 +13,6 @@
                 <th scope="col">Email</th>
                 <th scope="col">Password</th>
                 <th scope="col">Rôle</th>
-                @can('view', $user)
-                <th scope="col">Actions</th>    
-                @endcan
             </tr>
             </thead>
             <tbody>
@@ -29,8 +26,9 @@
 
                     <td class=""> 
                         <div class="d-flex">
-                            
+                            @can("update", $item)
                             <a class="btn btn-success" href="{{route("user.edit", $item->id)}}">Edit</a>&nbsp;&nbsp;
+                            @endcan
                             @can('delete', $item)
                             <form action="{{route("user.destroy", $item->id)}}" method="POST">
                                 @method('delete')

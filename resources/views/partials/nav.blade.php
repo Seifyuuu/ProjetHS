@@ -4,7 +4,14 @@
             <div class="row">
                 <div class="col-md-2 col-xs-12">
                     <div class="logo">
-                        <a href="index.html"><img src="img/logo/logo.png" alt="COFFEE" /></a>
+
+                        <a href="/">  
+                                @if (Storage::disk('public')->exists('img/' . $logo[0]->img))
+                            <img src="{{ asset('img/' . $logo[0]->img) }}" width="100px"></td>
+                                @else
+                            <img src="{{ asset($logo[0]->img) }}" width="100px"></td>
+                                @endif
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-8 col-xs-12">

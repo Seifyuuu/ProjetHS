@@ -1,6 +1,7 @@
 @extends("backoffice.partials.html")
 
 @section("content")
+
 <div class="mt-4 d-flex justify-content-center">
     <a class="btn btn-success" href="{{route("gallery.create")}}">Add + </a>
 </div>

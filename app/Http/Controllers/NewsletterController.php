@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Titre;
+use App\Models\Newsletter;
 use Illuminate\Http\Request;
 
-class TitreController extends Controller
+class NewsletterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class TitreController extends Controller
      */
     public function index()
     {
-        
+        $newsletter = Newsletter::all();
+        return view("backoffice.newsletter.all", compact("newsletter"));
     }
 
     /**
@@ -35,16 +36,20 @@ class TitreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newsletter = new Newsletter();
+        $newsletter->email = $request->email;
+        $newsletter->save();
+
+        return redirect()->route("newsletter.index");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Titre  $titre
+     * @param  \App\Models\Newsletter  $newsletter
      * @return \Illuminate\Http\Response
      */
-    public function show(Titre $titre)
+    public function show(Newsletter $newsletter)
     {
         //
     }
@@ -52,10 +57,10 @@ class TitreController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Titre  $titre
+     * @param  \App\Models\Newsletter  $newsletter
      * @return \Illuminate\Http\Response
      */
-    public function edit(Titre $titre)
+    public function edit(Newsletter $newsletter)
     {
         //
     }
@@ -64,10 +69,10 @@ class TitreController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Titre  $titre
+     * @param  \App\Models\Newsletter  $newsletter
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Titre $titre)
+    public function update(Request $request, Newsletter $newsletter)
     {
         //
     }
@@ -75,10 +80,10 @@ class TitreController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Titre  $titre
+     * @param  \App\Models\Newsletter  $newsletter
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Titre $titre)
+    public function destroy(Newsletter $newsletter)
     {
         //
     }

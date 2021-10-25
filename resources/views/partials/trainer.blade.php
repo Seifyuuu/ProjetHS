@@ -10,7 +10,11 @@
             @foreach ($trainers as $item)
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="single-trainer text-center">
-                    <img src="{{$item->img}}" alt="trainer">
+                    @if (Storage::disk('public')->exists('img/' . $item->img))
+                        <img src="{{ asset('img/' . $item->img) }}" alt=""></td>
+                          @else
+                        <img src="{{ asset($item->img) }}" alt=""></td>
+                          @endif
                     <div class="trainer-hover">
                         <h3>{{$item->name}}</h3>
                         <ul>

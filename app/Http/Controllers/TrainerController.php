@@ -14,7 +14,8 @@ class TrainerController extends Controller
      */
     public function index()
     {
-        //
+        $trainers = Trainer::all();
+        return view("backoffice.trainer.all", compact("trainers"));
     }
 
     /**
@@ -24,7 +25,7 @@ class TrainerController extends Controller
      */
     public function create()
     {
-        //
+        return view("backoffice.trainer.create");
     }
 
     /**
@@ -35,7 +36,16 @@ class TrainerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $trainer = new Trainer();
+        $trainer->name = $request->name;
+        $trainer->img = $request->file("img")->hashName();
+        $trainer->url1 = $request->url1;
+        $trainer->url2 = $request->url2;
+        $trainer->url3 = $request->url3;
+        $trainer->url4 = $request->url4;
+        $trainer->save();
+        $request->file("img")->storePublicly("img", "public");
+        return redirect()->route("trainer.index");
     }
 
     /**
@@ -46,7 +56,7 @@ class TrainerController extends Controller
      */
     public function show(Trainer $trainer)
     {
-        //
+        return view("backoffice.trainer.show", compact("trainer"));
     }
 
     /**
@@ -57,7 +67,7 @@ class TrainerController extends Controller
      */
     public function edit(Trainer $trainer)
     {
-        //
+        return view("backoffice.trainer.edit", compact("trainer"));
     }
 
     /**
@@ -69,7 +79,15 @@ class TrainerController extends Controller
      */
     public function update(Request $request, Trainer $trainer)
     {
-        //
+        $trainer->name = $request->name;
+        $trainer->img = $request->file("img")->hashName();
+        $trainer->url1 = $request->url1;
+        $trainer->url2 = $request->url2;
+        $trainer->url3 = $request->url3;
+        $trainer->url4 = $request->url4;
+        $trainer->save();
+        $request->file("img")->storePublicly("img", "public");
+        return redirect()->route("trainer.index");
     }
 
     /**
@@ -80,6 +98,7 @@ class TrainerController extends Controller
      */
     public function destroy(Trainer $trainer)
     {
-        //
+        $trainer->delete();
+        return redirect()->route("trainer.index");
     }
 }

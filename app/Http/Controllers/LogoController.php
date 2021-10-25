@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Titre;
+use App\Models\Logo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class TitreController extends Controller
+class LogoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,8 @@ class TitreController extends Controller
      */
     public function index()
     {
-        
+        $logo = Logo::first();
+        return view("backoffice.logo.all", compact("logo"));
     }
 
     /**
@@ -41,10 +43,10 @@ class TitreController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Titre  $titre
+     * @param  \App\Models\Logo  $logo
      * @return \Illuminate\Http\Response
      */
-    public function show(Titre $titre)
+    public function show(Logo $logo)
     {
         //
     }
@@ -52,33 +54,38 @@ class TitreController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Titre  $titre
+     * @param  \App\Models\Logo  $logo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Titre $titre)
+    public function edit(Logo $logo)
     {
-        //
+        return view("backoffice.logo.edit", compact("logo"));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Titre  $titre
+     * @param  \App\Models\Logo  $logo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Titre $titre)
+    public function update(Request $request, Logo $logo)
     {
-        //
+        Storage::disk("public")->delete("img/" . $logo->img);
+        $logo->img = $request->file("img")->hashName();
+        $logo->save();
+        $request->file("img")->storePublicly("img", "public");
+        return redirect()->route("logo.index");
+        
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Titre  $titre
+     * @param  \App\Models\Logo  $logo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Titre $titre)
+    public function destroy(Logo $logo)
     {
         //
     }

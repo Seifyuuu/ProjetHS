@@ -25,7 +25,16 @@
             <a class="nav-link" href="/back/gallery">Gallery</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/back/logo">Logo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/back/mail">Mail</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/back/nav">Navbar</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/back/newsletter">Newsletter</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/back/pricing">Pricing</a>
@@ -35,6 +44,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/back/testimonial">Testimonials</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/back/titre">Titres</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/back/trainer">Trainers</a>

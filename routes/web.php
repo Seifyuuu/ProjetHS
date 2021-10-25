@@ -7,9 +7,12 @@ use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\LogoController;
 use App\Http\Controllers\NavController;
 use App\Http\Controllers\PricingController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\TitreController;
 use App\Http\Controllers\TrainerController;
@@ -19,11 +22,13 @@ use App\Models\Classe;
 use App\Models\Event;
 use App\Models\Footer;
 use App\Models\Gallery;
+use App\Models\Logo;
 use App\Models\Nav;
 use App\Models\Pricing;
 use App\Models\Testimonial;
 use App\Models\Trainer;
 use App\Models\User;
+use Database\Seeders\LogoSeeder;
 use Database\Seeders\RoleSeeder;
 use Illuminate\Support\Facades\Route;
 
@@ -55,7 +60,8 @@ Route::get('/', function(){
     $pricing = Pricing::all();
     $testimonials = Testimonial::all();
     $footer = Footer::all();
-    return view("site.home", compact("navitems", "backgrounds", "about", "classes", "trainers", "galleries", "events", "pricing", "testimonials", "footer"));
+    $logo = Logo::all();
+    return view("site.home", compact("logo", "navitems", "backgrounds", "about", "classes", "trainers", "galleries", "events", "pricing", "testimonials", "footer"));
 });
 
 Route::get('/back', function () {
@@ -72,9 +78,12 @@ Route::resource('/back/footer', FooterController::class)->middleware(["auth", "m
 Route::resource('/back/gallery', GalleryController::class)->middleware(["auth", "manager"]);
 Route::resource('/back/pricing', PricingController::class)->middleware(["auth", "manager"]);
 Route::resource('/back/role', RoleSeeder::class)->middleware(["auth", "manager"]);
+Route::resource('/back/logo', LogoController::class)->middleware(["auth", "manager"]);
 Route::resource('/back/schedule', ScheduleController::class)->middleware(["auth", "manager"]);
 Route::resource('/back/testimonial', TestimonialController::class)->middleware(["auth", "manager"]);
 Route::resource('/back/titre', TitreController::class)->middleware(["auth", "manager"]);
 Route::resource('/back/trainer', TrainerController::class)->middleware(["auth", "manager"]);
 Route::resource('/back/about', AboutController::class)->middleware(["auth", "manager"]);
 Route::resource('/back/user', UserController::class)->middleware(["auth", "manager"]);
+Route::resource('/back/mail', MailController::class)->middleware(["auth", "manager"]);
+Route::resource('/back/newsletter', NewsletterController::class)->middleware(["auth", "admin"]);

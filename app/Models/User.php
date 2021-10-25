@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
+        'pack',
     ];
 
     /**
@@ -44,5 +46,8 @@ class User extends Authenticatable
 
     public function role(){
         return $this->belongsTo(Role::class);
+    }
+    public function pricing(){
+        return $this->belongsTo(Pricing::class);
     }
 }

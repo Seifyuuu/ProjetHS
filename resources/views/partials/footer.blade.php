@@ -15,7 +15,8 @@
                     <div class="newsletter-content section-title text-center">
                         <h2>subscribe now for latest update!</h2> 
                         <div class="newsletter-form">
-                            <form action="#" id="mc-form" class="mc-form fix">
+                            <form action="{{route("newsletter.store")}}" method="POST" class="mc-form fix" >
+                                @csrf
                                 <input id="mc-email" type="email" name="email" placeholder="Enter Your E-mail ID">
                                 <button id="mc-submit" type="submit" class="default-btn" data-text="submit"><span>submit</span></button> 
                             </form>
@@ -77,18 +78,23 @@
                 <div class="col-md-4 hidden-sm col-xs-12">
                     <div class="single-footer-widget">
                         <h3>get in touch</h3>
-                        <form id="subscribe-form" action="https://whizthemes.com/mail-php/other/mail.php">
+                        <form id="subscribe-form" action="{{route("mail.store")}}" method="POST">
+                            @csrf
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <input type="text" placeholder="Name" name="con_name">
+                                    <input type="text" placeholder="Name" name="name">
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" placeholder="Email" name="con_email">
+                                    <input type="text" placeholder="Email" name="email">
                                 </div>
                                 <div class="col-sm-12">
-                                    <textarea cols="30" rows="7" name="con_message" placeholder="subject"></textarea>
+                                    <input type="text" name="msg" placeholder="Subject" style="width: 400px; height:200px;">
                                     <button type="submit">submit</button>
-                                    <p class="subscribe-message"></p>
+                                        @if (session()->has('message'))
+                                            <div class="alert alert-success">
+                                                {{ session()->get('message') }}
+                                            </div>
+                                        @endif
                                 </div>
                             </div>
                         </form>
