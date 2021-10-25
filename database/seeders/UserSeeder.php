@@ -20,24 +20,30 @@ class UserSeeder extends Seeder
                 "name"=>"admin",
                 "email"=>"admin@admin.com",
                 "password"=>Hash::make("Admin123"),
-                "role_id"=>1
+                "role_id"=>1,
+                "pack"=>"Other"
             ],
             [
                 "name"=>"manager",
                 "email"=>"manager@manager.com",
                 "password"=>Hash::make("Manager123"),
-                "role_id"=>2
+                "role_id"=>2,
+                "pack"=>"Other"
+
             ],
             [
                 "name"=>"coach",
                 "email"=> "coach@coach.com",
                 "password"=>Hash::make("Coach123"),
-                "role_id"=>3
+                "role_id"=>3,
+                "pack"=>"Other"
+
             ],[
                 "name"=>"member",
                 "email"=>"member@member.com",
                 "password"=>Hash::make("Member123"),
-                "role_id"=>4
+                "role_id"=>4,
+                "pack"=>"Other"
             ],
         ]);
     }

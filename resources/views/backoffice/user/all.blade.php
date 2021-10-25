@@ -13,6 +13,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Password</th>
                 <th scope="col">Rôle</th>
+                <th scope="col">Pack</th>
             </tr>
             </thead>
             <tbody>
@@ -23,6 +24,7 @@
                     <td>{{$item->email}}</td>
                     <td>{{$item->password}}</td>
                     <td>{{$item->role->name}}</td>
+                    <td>{{$item->pack}}</td>
 
                     <td class=""> 
                         <div class="d-flex">
