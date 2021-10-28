@@ -4,9 +4,17 @@
 
 
         @if (Storage::disk('public')->exists('img/' . $item->img))
+            @if ($item->order == "premier")
+            <div class="single-slide" selected style="background-image: url('{{'img/' . $item->img}}');">
+            @else
             <div class="single-slide" style="background-image: url('{{'img/' . $item->img}}');">
+            @endif
         @else
+            @if ($item->order == "premier")
+            <div class="single-slide active" style="background-image: url('{{$item->img}}');">
+            @else
             <div class="single-slide" style="background-image: url('{{$item->img}}');">
+            @endif
         @endif               
             <div class="slider-content">
                 <div class="container">

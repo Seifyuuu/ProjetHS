@@ -41,6 +41,7 @@ class BackgroundController extends Controller
         Storage::disk("public")->delete("img/"  . $background->img);
         $background->img = $request->file("img")->hashName();
         $background->text = $request->text;
+        $background->order = "nope";
         $background->save();
         $request->file("img")->storePublicly("img", "public");
 
@@ -81,6 +82,7 @@ class BackgroundController extends Controller
         Storage::disk("public")->delete("img/"  . $background->img);
         $background->img = $request->file("img")->hashName();
         $background->text = $request->text;
+        $background->order = $request->order;
         $background->save();
         $request->file("img")->storePublicly("img", "public");
 

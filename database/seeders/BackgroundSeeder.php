@@ -17,11 +17,13 @@ class BackgroundSeeder extends Seeder
         DB::table('backgrounds')->insert([
             [
                 "text"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor pharetra iss neque. Nullam cursus elit sit amet justo interdum facilisis id at tortor.",
-                "img"=>"img/slider/slider1.jpg"
+                "img"=>"img/slider/slider1.jpg",
+                "order"=>"test"
             ],
             [
                 "text"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor pharetra iss neque. Nullam cursus elit sit amet justo interdum facilisis id at tortor.",
-                "img"=>"img/slider/slider2.jpg"
+                "img"=>"img/slider/slider2.jpg",
+                "order"=>"test"
             ],
         ]);
     }

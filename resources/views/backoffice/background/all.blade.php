@@ -26,6 +26,7 @@
           <img src="{{ asset($item->img) }}" style="width: 200px" alt="">
           @endif
         <p class="card-text mt-1">{{$item->text}}</p>
+        <p class="card-text mt-1"><i>{{$item->order}}</i></p>
           <a href="{{route("background.edit", $item->id)}}" class="btn btn-success">Edit</a>
           <form action="{{route("background.destroy", $item->id)}}" method="POST">
             @method('delete')

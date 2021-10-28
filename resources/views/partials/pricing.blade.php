@@ -23,7 +23,11 @@
                            <li>{{$item->text3}}</li>
                            <li>{{$item->text4}}</li>
                         </ul>
+                        @if (Auth::user())
                         <a href="#">get started</a>
+                        @else
+                        <a href="/login">get started</a>
+                        @endif
                     </div>
                 </div>
             </div>  

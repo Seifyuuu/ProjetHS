@@ -55,10 +55,10 @@ Route::get('/', function(){
     $about = About::all();
     $classes = Classe::all();
     $trainers = Trainer::all();
-    $galleries = Gallery::all();
+    $galleries = Gallery::inRandomOrder()->limit(6)->get();
     $events = Event::all();
     $pricing = Pricing::all();
-    $testimonials = Testimonial::all();
+    $testimonials = Testimonial::inRandomOrder()->limit(5)->get();
     $footer = Footer::all();
     $logo = Logo::all();
     return view("site.home", compact("logo", "navitems", "backgrounds", "about", "classes", "trainers", "galleries", "events", "pricing", "testimonials", "footer"));

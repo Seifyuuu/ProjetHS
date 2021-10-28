@@ -32,7 +32,7 @@
         <script src="{{asset("js/bootstrap.min.js")}}"></script>
         <script src="{{asset("js/owl.carousel.min.js")}}"></script>
         <script src="{{asset("js/jquery.meanmenu.js")}}"></script>
-        <script src="{{asset("js/ajax-mail.js")}}"></script>
+        {{-- <script src="{{asset("js/ajax-mail.js")}}"></script> --}}
         <script src="{{asset("js/jquery.ajaxchimp.min.js")}}"></script>   		
         <script src="{{asset("js/slick.min.js")}}"></script>    
         <script src="{{asset("js/imagesloaded.pkgd.min.js")}}"></script>

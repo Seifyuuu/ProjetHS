@@ -99,7 +99,7 @@
                                 <div class="col-sm-12">
                                     <input type="text" name="msg" placeholder="Subject"
                                         style="width: 400px; height:200px;">
-                                    <button type="submit">submit</button>
+                                    <button id="mc-submit" type="submit">submit</button>
 
                                 </div>
                                 @if (session()->has('messageFooter'))

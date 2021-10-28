@@ -15,6 +15,11 @@
     <label for="">Texte 1 :</label>
     <input type="text" name="text" value="{{$background->text}}">
     <br>
+    <label for="">Ordre : </label>
+    <select name="order">
+        <option value="not selected" selected>pas premier</option>
+        <option value="premier">Premier</option>
+    </select>
     </div>
     </div>
 

@@ -36,7 +36,6 @@
                    
                     <td class=""> 
                         <div class="d-flex">
-                        <a class="btn btn-warning" href="{{route("mail.edit", $item->id)}}">Edit</a>&nbsp;&nbsp;
                         <a class="btn btn-secondary" href="{{route("mail.show", $item->id)}}">Show</a></button>&nbsp;&nbsp;
                         <form action="{{route("mail.destroy", $item->id)}}" method="POST">
                           @method('delete')

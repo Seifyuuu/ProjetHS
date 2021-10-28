@@ -17,6 +17,7 @@ class CreateBackgroundsTable extends Migration
             $table->id();
             $table->string("text");
             $table->string("img");
+            $table->string("order");
             $table->timestamps();
         });
     }
