@@ -18,12 +18,17 @@ class BackgroundSeeder extends Seeder
             [
                 "text"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor pharetra iss neque. Nullam cursus elit sit amet justo interdum facilisis id at tortor.",
                 "img"=>"img/slider/slider1.jpg",
-                "order"=>"test"
+                "place"=>0,
+                "title"=>"Welcome Our Handstand",
+                "subtitle"=>"Keep (Refresh & Strong) Your Body"
+            
             ],
             [
                 "text"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor pharetra iss neque. Nullam cursus elit sit amet justo interdum facilisis id at tortor.",
                 "img"=>"img/slider/slider2.jpg",
-                "order"=>"test"
+                "place"=>1,
+                "title"=>"Welcome Our Handstand",
+                "subtitle"=>"Keep (Refresh & Strong) Your Body"
             ],
         ]);
     }

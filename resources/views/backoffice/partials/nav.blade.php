@@ -13,7 +13,7 @@
             <a class="nav-link" href="/back/background">Background</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Classes</a>
+            <a class="nav-link" href="/back/classe">Classes</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/back/event">Event</a>
@@ -29,6 +29,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/back/mail">Mail</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/back/map">Map</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/back/nav">Navbar</a>

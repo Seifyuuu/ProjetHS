@@ -37,11 +37,14 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "img"=>['required'],
+        ]);
         $gallery = new Gallery();
         $gallery->img = $request->file("img")->hashName();
         $gallery->save();
         $request->file("img")->storePublicly("img", "public");
-        return redirect()->route("gallery.index");
+        return redirect()->route("gallery.index")->with("message", "Done! ");
     }
 
     /**
@@ -75,12 +78,15 @@ class GalleryController extends Controller
      */
     public function update(Request $request, Gallery $gallery)
     {
+        $request->validate([
+            "img"=>['required'],
+        ]);
     
         Storage::disk("public")->delete("img/" . $gallery->img);
         $gallery->img = $request->file("img")->hashName();
         $gallery->save();
         $request->file("img")->storePublicly("img", "public");
-        return redirect()->route("gallery.index");
+        return redirect()->route("gallery.index")->with("message", "Done! ");
         
 
     }

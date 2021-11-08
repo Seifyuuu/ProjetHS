@@ -13,7 +13,11 @@
             <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="about-video active">
                      <div class="game">
-                         <a href="#"><img src="img/about/about.jpg" alt="about"></a>
+                         <a href="#">@if (Storage::disk('public')->exists('img/' . $item->img))
+                            <img src="{{ asset('img/' . $item->img) }}" alt=""></td>
+                              @else
+                            <img src="{{ asset($item->img) }}" alt=""></td>
+                              @endif</a>
                      </div> 
                      <div class="video-icon video-hover">
                          <a class="video-popup" href="{{$item->video}}">

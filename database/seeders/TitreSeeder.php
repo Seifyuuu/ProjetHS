@@ -16,10 +16,6 @@ class TitreSeeder extends Seeder
     {
         DB::table('titres')->insert([
             [
-                "title"=>"Welcome Our Handstand",
-                "subtitle"=>"Keep (Refresh & Strong) Your Body"
-            ],
-            [
                 "title"=>"Our Classes",
                 "subtitle"=>"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum issss has been the industry's standard dummy text ever since the 1500s, when an unknown lorem"
             ],

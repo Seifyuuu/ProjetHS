@@ -7,14 +7,17 @@
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum issss has been the industry's standard dummy text ever since the 1500s, when an unknown lorem </p>
                 </div>
                 <div class="event-wrapper">
+                    @foreach ($events as $item)
+                    @if ($item->place == 1)
+                        
                     <div class="event-content text-center">
-                        @foreach ($events as $item)
                         <h3>{{$item->name}}</h3>
                         <p>{{$item->text}}</p>
                         <h4>{{$item->date}}</h4>
                         <h5>{{$item->hour}}</h5>
-                        @endforeach
-                    </div> 
+                    </div>   
+                    @endif
+                    @endforeach
                 </div>
             </div>
         </div>

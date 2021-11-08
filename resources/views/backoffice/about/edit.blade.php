@@ -1,6 +1,16 @@
 @extends('backoffice.partials.html')
 
 @section('content')
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error )
+          <li>{{$error}}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 
 <form enctype="multipart/form-data" action="{{route("about.update", $about->id)}}" method="POST">
     @csrf
@@ -19,6 +29,9 @@
     <br>
     <label for="">Vidéo :</label>
     <input type="text" name="video" value="{{$about->video}}">
+    <br>
+    <label for="">Photo :</label>
+    <input type="file" name="img">
     </div>
     </div>
 

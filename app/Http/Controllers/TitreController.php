@@ -70,10 +70,14 @@ class TitreController extends Controller
      */
     public function update(Request $request, Titre $titre)
     {
+        $request->validate([
+            "title"=>['required'],
+            "subtitle"=>['required'],
+        ]);
         $titre->title = $request->title;
         $titre->subtitle = $request->subtitle;
         $titre->save();
-        return redirect()->route("titre.index");
+        return redirect()->route("titre.index")->with("message", "Done! ");
     }
 
     /**

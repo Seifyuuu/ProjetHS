@@ -1,6 +1,11 @@
 @extends("backoffice.partials.html")
 
 @section("content")
+@if (session()->has('message'))
+<div class="alert alert-success">
+    {{ session()->get('message') }}
+</div>
+@endif
     
 <div class="mt-4 d-flex justify-content-center">
     <a class="btn btn-success" href="{{route("testimonial.create")}}">Add + </a>

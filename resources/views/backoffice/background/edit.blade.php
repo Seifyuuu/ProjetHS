@@ -1,7 +1,15 @@
 @extends("backoffice.partials.html")
 
 @section("content")
-    
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error )
+          <li>{{$error}}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
 <form enctype="multipart/form-data" action="{{route("background.update", $background->id)}}" method="POST">
     @csrf
@@ -12,13 +20,19 @@
     <label for="">Photo :</label>
     <input type="file" name="img" value="{{$background->img}}">
     <br>
+    <label for="">Title :</label>
+    <input type="text" name="title" value="{{$background->title}}">
+    <br>
+    <label for="">Subtitle :</label>
+    <input type="text" name="subtitle" value="{{$background->subtitle}}">
+    <br>
     <label for="">Texte 1 :</label>
     <input type="text" name="text" value="{{$background->text}}">
     <br>
-    <label for="">Ordre : </label>
-    <select name="order">
-        <option value="not selected" selected>pas premier</option>
-        <option value="premier">Premier</option>
+    <label for="">Prio?  : </label>
+    <select name="place">
+        <option value="0" selected>Pas premier</option>
+        <option value="1">Premier</option>
     </select>
     </div>
     </div>

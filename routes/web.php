@@ -13,6 +13,7 @@ use App\Http\Controllers\PricingController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\MapController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\TitreController;
 use App\Http\Controllers\TrainerController;
@@ -23,6 +24,7 @@ use App\Models\Event;
 use App\Models\Footer;
 use App\Models\Gallery;
 use App\Models\Logo;
+use App\Models\Map;
 use App\Models\Nav;
 use App\Models\Pricing;
 use App\Models\Testimonial;
@@ -54,14 +56,15 @@ Route::get('/', function(){
     $backgrounds = Background::all();
     $about = About::all();
     $classes = Classe::all();
-    $trainers = Trainer::all();
+    $trainers = Trainer::inRandomOrder()->limit(3)->get();
     $galleries = Gallery::inRandomOrder()->limit(6)->get();
     $events = Event::all();
     $pricing = Pricing::all();
+    $map = Map::first();
     $testimonials = Testimonial::inRandomOrder()->limit(5)->get();
     $footer = Footer::all();
     $logo = Logo::all();
-    return view("site.home", compact("logo", "navitems", "backgrounds", "about", "classes", "trainers", "galleries", "events", "pricing", "testimonials", "footer"));
+    return view("site.home", compact("map","logo", "navitems", "backgrounds", "about", "classes", "trainers", "galleries", "events", "pricing", "testimonials", "footer"));
 });
 
 Route::get('/back', function () {
@@ -75,6 +78,7 @@ Route::resource('/back/background', BackgroundController::class)->middleware(["a
 Route::resource('/back/classe', ClasseController::class)->middleware(["auth","coach"]);
 Route::resource('/back/event', EventController::class)->middleware(["auth", "manager"]);
 Route::resource('/back/footer', FooterController::class)->middleware(["auth", "manager"]);
+Route::resource('/back/map', MapController::class)->middleware(["auth", "manager"]);
 Route::resource('/back/gallery', GalleryController::class)->middleware(["auth", "manager"]);
 Route::resource('/back/pricing', PricingController::class)->middleware(["auth", "manager"]);
 Route::resource('/back/role', RoleSeeder::class)->middleware(["auth", "manager"]);

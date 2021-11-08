@@ -36,6 +36,12 @@ class TestimonialController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "name"=>['required'],
+            "job"=>['required'],
+            "text"=>['required'],
+        ]);
+
         $testimonial = new Testimonial();
         $testimonial->name = $request->name;
         $testimonial->job = $request->job;
@@ -76,12 +82,18 @@ class TestimonialController extends Controller
      */
     public function update(Request $request, Testimonial $testimonial)
     {
+
+        $request->validate([
+            "name"=>['required'],
+            "job"=>['required'],
+            "text"=>['required'],
+        ]);
         $testimonial->name = $request->name;
         $testimonial->job = $request->job;
         $testimonial->text = $request->text;
 
         $testimonial->save();
-        return redirect()->route("testimonial.index");
+        return redirect()->route("testimonial.index")->with("message", "Done! ");
     }
 
     /**

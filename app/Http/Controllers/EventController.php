@@ -36,13 +36,19 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "text"=>['required'],
+            "name"=>['required'],
+            "date"=>['required'],
+        ]);
         $event = new Event();
         $event->name = $request->name;
         $event->text = $request->text;
+        $event->place = "0";
         $event->date = $request->date;
         $event->hour = $request->hour;
         $event->save();
-        return redirect()->route("event.index");    
+        return redirect()->route("event.index")->with("message", "Done! ");    
 
     }
 
@@ -77,12 +83,24 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
+        $request->validate([
+            "text"=>['required'],
+            "name"=>['required'],
+            "date"=>['required'],
+        ]);
         $event->name = $request->name;
         $event->text = $request->text;
         $event->date = $request->date;
+        $eventall = Event::all();
+        foreach ($eventall as $item){
+            $item->place = 0;
+            $item->save();
+    
+    }
+        $event->place = $request->place;
         $event->hour = $request->hour;
         $event->save();
-        return redirect()->route("event.index");
+        return redirect()->route("event.index")->with("message", "Done! ");
     }
 
     /**

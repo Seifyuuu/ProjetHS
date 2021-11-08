@@ -69,6 +69,15 @@ class PricingController extends Controller
      */
     public function update(Request $request, Pricing $pricing)
     {
+        $request->validate([
+            "name"=>['required'],
+            "price"=>['required'],
+            "text1"=>['required'],
+            "text2"=>['required'],
+            "text3"=>['required'],
+            "text4"=>['required'],
+        ]);
+
         $pricing->name = $request->name;
         $pricing->price = $request->price;
         $pricing->text1 = $request->text1;
@@ -77,7 +86,7 @@ class PricingController extends Controller
         $pricing->text4 = $request->text4;
 
         $pricing->save();
-        return redirect()->route("pricing.index");
+        return redirect()->route("pricing.index")->with("message", "Done! ");
     }
 
     /**

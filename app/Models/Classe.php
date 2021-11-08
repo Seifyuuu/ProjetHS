@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Classe extends Model
 {
     use HasFactory;
+    public function trainer(){
+        return $this->belongsTo(Trainer::class);
+    }
 }

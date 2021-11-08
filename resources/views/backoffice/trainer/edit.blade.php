@@ -1,6 +1,15 @@
 @extends("backoffice.partials.html")
 
 @section("content")
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error )
+          <li>{{$error}}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <div class="mt-4">
 <form enctype="multipart/form-data"  action="{{route("trainer.update", $trainer->id)}}" method="POST">
     @csrf

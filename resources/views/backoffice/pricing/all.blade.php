@@ -1,6 +1,11 @@
 @extends("backoffice.partials.html")
 
 @section("content")
+@if (session()->has('message'))
+<div class="alert alert-success">
+    {{ session()->get('message') }}
+</div>
+@endif
     
 <section class="d-flex justify-content-center">
     <div class="w-50 d-flex flex-col mt-3">

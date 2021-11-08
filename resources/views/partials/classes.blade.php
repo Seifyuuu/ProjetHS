@@ -13,7 +13,13 @@
             <div class="col-md-4 col-sm-6 col-xs-12">     
                 <div class="single-class">
                     <div class="single-img">
-                        <a href="class.html"><img src="{{$item->img}}" alt="class"></a>
+                        <a href="class.html">
+                            @if (Storage::disk('public')->exists('img/' . $item->img))
+                            <img src="{{ asset('img/' . $item->img) }}" alt=""></td>
+                              @else
+                            <img src="{{ asset($item->img) }}" alt=""></td>
+                              @endif
+                        </a>
                         <div class="gallery-icon">
                             <a class="image-popup" href="{{$item->img}}">
                                 <i class="zmdi zmdi-zoom-in"></i>
@@ -21,9 +27,9 @@
                         </div>
                     </div>
                     <div class="single-content">
-                        <h3><a href="class.html">{{$item->name}}</a></h3>
+                        <h3><a href="class.html">{{$item->name}} <span>({{$item->categorie}})</span></h3></a>
                         <ul>
-                            <li><i class="zmdi zmdi-face"></i>{{$item->coach}}</li>
+                            <li><i class="zmdi zmdi-face"></i>{{$item->trainer->name}}</li>
                             <li><i class="zmdi zmdi-alarm"></i>{{$item->schedule}}</li>
                         </ul>
                     </div>

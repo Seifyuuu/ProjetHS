@@ -16,8 +16,9 @@ class CreateClassesTable extends Migration
         Schema::create('classes', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("coach");
+            $table->foreignId("trainer_id")->constrained("trainers", "id");
             $table->string("schedule");
+            $table->string("categorie");
             $table->string("img");
             $table->timestamps();
         });

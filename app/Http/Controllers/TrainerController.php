@@ -36,6 +36,15 @@ class TrainerController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "name"=>['required'],
+            "url1"=>['required'],
+            "url2"=>['required'],
+            "url3"=>['required'],
+            "url4"=>['required'],
+            "img"=>['required'],
+        ]);
+
         $trainer = new Trainer();
         $trainer->name = $request->name;
         $trainer->img = $request->file("img")->hashName();
@@ -45,7 +54,7 @@ class TrainerController extends Controller
         $trainer->url4 = $request->url4;
         $trainer->save();
         $request->file("img")->storePublicly("img", "public");
-        return redirect()->route("trainer.index");
+        return redirect()->route("trainer.index")->with("message", "Done! ");
     }
 
     /**
@@ -79,6 +88,14 @@ class TrainerController extends Controller
      */
     public function update(Request $request, Trainer $trainer)
     {
+        $request->validate([
+            "name"=>['required'],
+            "url1"=>['required'],
+            "url2"=>['required'],
+            "url3"=>['required'],
+            "url4"=>['required'],
+            "img"=>['required'],
+        ]);
         $trainer->name = $request->name;
         $trainer->img = $request->file("img")->hashName();
         $trainer->url1 = $request->url1;
@@ -87,7 +104,7 @@ class TrainerController extends Controller
         $trainer->url4 = $request->url4;
         $trainer->save();
         $request->file("img")->storePublicly("img", "public");
-        return redirect()->route("trainer.index");
+        return redirect()->route("trainer.index")->with("message", "Done! ");
     }
 
     /**

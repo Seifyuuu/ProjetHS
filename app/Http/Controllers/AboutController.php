@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AboutController extends Controller
 {
@@ -70,13 +71,26 @@ class AboutController extends Controller
      */
     public function update(Request $request, About $about)
     {
+        $request->validate([
+            "title"=>['required'],
+            "text"=>['required'],
+            "text2"=>['required'],
+            "video"=>['required'],
+            "img"=>['required']
+        ]);
+
         $about->title = $request->title;
         $about->text = $request->text;
         $about->text2 = $request->text2;
         $about->video = $request->video;
+        Storage::disk("public")->delete("img/"  . $about->img);
+        $about->img = $request->file("img")->hashName();
         $about->save();
+
+        $request->file("img")->storePublicly("img", "public");
+
         
-        return redirect()->route("about.index");
+        return redirect()->route("about.index")->with('message', 'Done!');
     }
 
     /**

@@ -1,7 +1,11 @@
 @extends("backoffice.partials.html")
 
 @section("content")
-    
+@if (session()->has('message'))
+<div class="alert alert-success">
+    {{ session()->get('message') }}
+</div>
+@endif
 <div class="mt-4 d-flex justify-content-center">
     <a class="btn btn-success" href="{{route("event.create")}}">Add + </a>
 </div>
@@ -15,6 +19,8 @@
                 <th scope="col">Date</th>
                 <th scope="col">Hour</th>
                 <th scope="col">Text</th>
+                <th scope="col">Place</th>
+
                 <th scope="col">Actions</th>
             </tr>
             </thead>
@@ -26,6 +32,7 @@
                     <td>{{$item->date}}</td>
                     <td>{{$item->hour}}</td>
                     <td>{{$item->text}}</td>
+                    <td>{{$item->place}}</td>
                     <td class=""> 
                         <div class="d-flex">
                         <a class="btn btn-warning" href="{{route("event.edit", $item->id)}}">Edit</a>&nbsp;&nbsp;

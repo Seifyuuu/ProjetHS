@@ -37,15 +37,25 @@ class BackgroundController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "img"=>['required'],
+            "text"=>['required'],
+            "title"=>['required'],
+            "subtitle"=>['required']
+        ]);
+
         $background = new Background();
         Storage::disk("public")->delete("img/"  . $background->img);
         $background->img = $request->file("img")->hashName();
         $background->text = $request->text;
-        $background->order = "nope";
+        $background->title = $request->title;
+        $background->subtitle = $request->subtitle;
+
+        $background->place = "0";
         $background->save();
         $request->file("img")->storePublicly("img", "public");
 
-        return redirect()->route("background.index")->with("messageC", "Created");
+        return redirect()->route("background.index")->with("message", "Created");
     }
 
     /**
@@ -79,14 +89,33 @@ class BackgroundController extends Controller
      */
     public function update(Request $request, Background $background)
     {
+
+        $request->validate([
+            "img"=>['required'],
+            "text"=>['required'],
+            "title"=>['required'],
+            "subtitle"=>['required']
+        ]);
+        
         Storage::disk("public")->delete("img/"  . $background->img);
         $background->img = $request->file("img")->hashName();
         $background->text = $request->text;
-        $background->order = $request->order;
+        $bgall = Background::all();
+            foreach ($bgall as $item){
+                $item->place = 0;
+                $item->save();
+        
+        }
+       
+        
+
+        $background->place = $request->place;
+        $background->title = $request->title;
+        $background->subtitle = $request->subtitle;
+        
         $background->save();
         $request->file("img")->storePublicly("img", "public");
-
-        return redirect()->route("background.index");
+        return redirect()->route("background.index")->with('message', 'Done!');
     }
 
     /**

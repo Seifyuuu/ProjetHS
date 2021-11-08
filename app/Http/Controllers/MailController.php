@@ -36,6 +36,8 @@ class MailController extends Controller
      */
     public function store(Request $request)
     {
+        
+
         $mail = new Mail();
         $mail->name = $request->name;
         $mail->email = $request->email;

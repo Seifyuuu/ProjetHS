@@ -1,7 +1,11 @@
 @extends("backoffice.partials.html")
 
 @section("content")
-
+@if (session()->has('message'))
+<div class="alert alert-success">
+    {{ session()->get('message') }}
+</div>
+@endif
 <div class="mt-2 d-flex justify-content-center align-items-center h-25">
 
     <div class="card" style="width: 18rem;">

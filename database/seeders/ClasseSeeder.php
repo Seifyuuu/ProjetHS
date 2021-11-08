@@ -17,21 +17,24 @@ class ClasseSeeder extends Seeder
         DB::table('classes')->insert([
             [
                 "name"=>"Yoga For Climers",
-                "coach"=>"Sathi Bhuiyan",
+                "trainer_id"=> 1,
                 "schedule"=>"10.00Am-05:00Pm",
+                "categorie"=>"mixte",
                 "img"=>"img/class/1.jpg"
             ],
             [
                 "name"=>"Yoga For Climbers",
-                "coach"=>"Sathi Bhuiyan",
+                "trainer_id"=> 1,
                 "schedule"=>"10.00Am-05:00Pm",
-                "img"=>"img/class/2.jpg"
+                "img"=>"img/class/2.jpg",
+                "categorie" => "homme"
             ],
             [
                 "name"=>"Yoga for Climbers",
-                "coach"=>"Sathi Bhuiyan",
+                "trainer_id"=> 3,
                 "schedule"=>"10.00Am-05:00Pm",
-                "img"=>"img/class/3.jpg"
+                "img"=>"img/class/3.jpg",
+                "categorie" => "femme"
             ],
         ]);
     }

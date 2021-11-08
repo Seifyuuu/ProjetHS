@@ -71,11 +71,14 @@ class LogoController extends Controller
      */
     public function update(Request $request, Logo $logo)
     {
+        $request->validate([
+            "img"=>['required'],
+        ]);
         Storage::disk("public")->delete("img/" . $logo->img);
         $logo->img = $request->file("img")->hashName();
         $logo->save();
         $request->file("img")->storePublicly("img", "public");
-        return redirect()->route("logo.index");
+        return redirect()->route("logo.index")->with("message", "Done! ");
         
     }
 

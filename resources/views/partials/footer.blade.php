@@ -3,7 +3,7 @@
     <div class="google-map-area">
         <!--  Map Section -->
         <div id="contacts" class="map-area">
-            <div id="googleMap" style="width:100%;height:380px;"></div>
+            <iframe width="100%" height="380" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=1920&amp;height=380&amp;hl=en&amp;q={{$map->nom}}%20{{$map->ville}}+()&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe> <a href='https://www.symptoma.fr/fr/info/covid-19#info'>Symptômes du coronavirus</a> <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=68af929bf7c5ba1183a7e4d1e5979392b7ce4c3a'></script>
         </div>
     </div>
 </div>
@@ -47,14 +47,18 @@
             <div class="row">
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="single-footer-widget">
-                        <a href="index.html"><img src="img/logo/logo.png" alt="handstand"></a>
+                        <a href="index.html"> @if (Storage::disk('public')->exists('img/' . $logo[0]->img))
+                            <img src="{{ asset('img/' . $logo[0]->img) }}" width="100px"></td>
+                                @else
+                            <img src="{{ asset($logo[0]->img) }}" width="100px"></td>
+                                @endif  </a>
                         @foreach ($footer as $item)
 
                             <p>{{ $item->text }}</p>
                             <ul>
                                 <li><i class="zmdi zmdi-email"></i> {{ $item->email }}</li>
                                 <li><i class="zmdi zmdi-phone"></i> ({{ $item->number }})</li>
-                                <li><i class="zmdi zmdi-home"></i>{{ $item->adresse }}</li>
+                                <li><i class="zmdi zmdi-home">{{$map->type}} {{$map->nom}} {{$map->numero}} {{$map->ville}}</i></li>
                             </ul>
                         @endforeach
                     </div>

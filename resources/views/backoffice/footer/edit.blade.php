@@ -1,7 +1,15 @@
 @extends("backoffice.partials.html")
 
 @section("content")
-    
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error )
+          <li>{{$error}}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <form class="mt-5" enctype="multipart/form-data"  action="{{route("footer.update", $footer->id)}}" method="POST">
     @csrf
     @method("PUT")

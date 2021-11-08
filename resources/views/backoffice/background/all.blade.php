@@ -7,9 +7,9 @@
 </div>
 @endif
 
-@if (session()->has('messageC'))
+@if (session()->has('message'))
 <div class="alert alert-success">
-    {{ session()->get('messageC') }}
+    {{ session()->get('message') }}
 </div>
 
 @endif
@@ -17,6 +17,7 @@
   <a class="btn btn-success" href="{{route("background.create")}}">Add + </a>
 </div>
 <div class="mt-2 d-flex justify-content-center align-items-center">
+  
     @foreach ($background as $item)
     <div class="card ml-3" style="width: 18rem;">
         <div class="card-body">
@@ -26,7 +27,11 @@
           <img src="{{ asset($item->img) }}" style="width: 200px" alt="">
           @endif
         <p class="card-text mt-1">{{$item->text}}</p>
-        <p class="card-text mt-1"><i>{{$item->order}}</i></p>
+        <p class="card-text mt-1">{{$item->title}}</p>
+
+        <p class="card-text mt-1">{{$item->subtitle}}</p>
+
+        <p class="card-text mt-1"><i>{{$item->place}}</i></p>
           <a href="{{route("background.edit", $item->id)}}" class="btn btn-success">Edit</a>
           <form action="{{route("background.destroy", $item->id)}}" method="POST">
             @method('delete')

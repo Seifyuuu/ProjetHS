@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
            RoleSeeder::class,
            PricingSeeder::class,
-
+           TrainerSeeder::class,
            UserSeeder::class,
            AboutSeeder::class,
            BackgroundSeeder::class,
@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
            ScheduleSeeder::class,
            TestimonialsSeeder::class,
            TitreSeeder::class,
-           TrainerSeeder::class
+           MapSeeder::class
         ]);
     }
 }

@@ -70,12 +70,19 @@ class FooterController extends Controller
      */
     public function update(Request $request, Footer $footer)
     {
+        $request->validate([
+            "text"=>['required'],
+            "email"=>['required'],
+            "number"=>['required'],
+            "adresse"=>['required'],
+        ]);
+
         $footer->text = $request->text;
         $footer->email = $request->email;
         $footer->number = $request->number;
         $footer->adresse = $request->adresse;
         $footer->save();
-        return redirect()->route("footer.index");
+        return redirect()->route("footer.index")->with("message", "Done! ");
     }
 
     /**

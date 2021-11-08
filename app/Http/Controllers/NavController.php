@@ -70,9 +70,12 @@ class NavController extends Controller
      */
     public function update(Request $request, Nav $nav)
     {
+        $request->validate([
+            "name"=>['required'],
+        ]);
         $nav->name = $request->name;
         $nav->save();
-        return redirect()->route("nav.index");
+        return redirect()->route("nav.index")->with("message", "Done! ");
     }
 
     /**
