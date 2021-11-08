@@ -12,3 +12,4 @@ cacher avec policy les liens pr membre -> que profil/ coach -> que classe
 coach peut juste créer supprimer modifier son cours 
 user peut gerer son propre profil et voir ses cours  
 
+

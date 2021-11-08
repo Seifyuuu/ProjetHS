@@ -11,4 +11,10 @@ class Classe extends Model
     public function trainer(){
         return $this->belongsTo(Trainer::class);
     }
+
+    public function inscription(){
+        return $this->belongsTo(Inscription::class);
+    }
+
+    
 }

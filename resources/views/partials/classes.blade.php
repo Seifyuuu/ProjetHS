@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="row"> 
-            @foreach ($classes as $item)
+            @foreach ($classes as $item) 
             <div class="col-md-4 col-sm-6 col-xs-12">     
                 <div class="single-class">
                     <div class="single-img">
@@ -33,7 +33,8 @@
                             <li><i class="zmdi zmdi-alarm"></i>{{$item->schedule}}</li>
                         </ul>
                         <form class="d-flex justify-content-center flex-column" action="{{route("inscription.store")}}" method="post" enctype="multipart/form-data">
-                        <button type="submit" class="btn btn-success">Sign in</button>
+                            @csrf
+                            <button type="submit" class="btn btn-success">Sign in</button> Participants : ??? / 15
                         </form>
                     </div>
                 </div>

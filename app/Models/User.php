@@ -50,4 +50,9 @@ class User extends Authenticatable
     public function pricing(){
         return $this->belongsTo(Pricing::class);
     }
+
+    public function inscription(){
+        return $this->belongsTo(Inscription::class);
+    }
+
 }
