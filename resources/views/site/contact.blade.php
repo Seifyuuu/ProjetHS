@@ -3,6 +3,8 @@
 @section("content")
     
     @include("partials.nav")
+    @include("partials.banner")
+
                         <form id="subscribe-form" action="{{ route('mail.store') }}" method="POST">
                             @csrf
                             <div class="row">

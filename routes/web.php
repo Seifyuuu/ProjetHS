@@ -70,7 +70,7 @@ Route::get('/', function(){
     $footer = Footer::all();
     $logo = Logo::all();
     return view("site.home", compact("trainers2", "trainers3", "titres", "map","logo", "navitems", "backgrounds", "about", "classes", "trainers", "galleries", "events", "pricing", "testimonials", "footer"));
-});
+})->name("home");
 
 Route::get('/aboutus', function(){
     $navitems = Nav::all();
@@ -115,7 +115,7 @@ Route::get('/contact', function(){
 Route::get('/gallery', function(){
     $navitems = Nav::all();
     $footer = Footer::all();
-    $galleries = Gallery::all()->pagination(9);
+    $galleries = Gallery::all();
     $map = Map::first();
     $logo = Logo::all();
     $titres = Titre::all();

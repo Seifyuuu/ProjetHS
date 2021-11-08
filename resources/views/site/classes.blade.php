@@ -3,6 +3,8 @@
 @section("content")
     
     @include("partials.nav")
+    @include("partials.banner")
+
     @include("partials.classes")
     @include("partials.schedule")
     @include("partials.event")
