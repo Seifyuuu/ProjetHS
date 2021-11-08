@@ -27,6 +27,11 @@
         <input type="text" name="url3" value="{{$trainer->url3}}">
         <label for="">Pinterest : </label>
         <input type="text" name="url4" value="{{$trainer->url4}}">
+        <label for="">Prio?  : </label>
+        <select name="type">
+            <option value="0" selected>Coach</option>
+            <option value="1">Leadcoach</option>
+        </select>
     </div>
 <br>
 <div style="display: flex; justify-content:center;">

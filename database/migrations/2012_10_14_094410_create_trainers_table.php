@@ -17,6 +17,7 @@ class CreateTrainersTable extends Migration
             $table->id();
             $table->string("name");
             $table->string("img");
+            $table->boolean("type");
             $table->string("url1");
             $table->string("url2");
             $table->string("url3");

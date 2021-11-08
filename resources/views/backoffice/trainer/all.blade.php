@@ -16,6 +16,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Image</th>
+                <th scope="col">Statut</th>
                 <th scope="col">Facebook</th>
                 <th scope="col">Twitter</th>
                 <th scope="col">Dribbble</th>
@@ -35,6 +36,11 @@
                         <img style="width: 100px" src="{{ asset($item->img) }}" alt=""></td>
                           @endif
                     </td>
+                    <td>@if ($item->type == 1)
+                        Leadcoach
+                    @else
+                        Coach
+                    @endif</td>
                     <td>{{$item->url1}}</td>
                     <td>{{$item->url2}}</td>
                     <td>{{$item->url3}}</td>

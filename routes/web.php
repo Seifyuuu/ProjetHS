@@ -7,6 +7,7 @@ use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\NavController;
 use App\Http\Controllers\PricingController;
@@ -28,6 +29,7 @@ use App\Models\Map;
 use App\Models\Nav;
 use App\Models\Pricing;
 use App\Models\Testimonial;
+use App\Models\Titre;
 use App\Models\Trainer;
 use App\Models\User;
 use Database\Seeders\LogoSeeder;
@@ -52,11 +54,14 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::get('/', function(){
+    $titres = Titre::all();
     $navitems = Nav::all();
     $backgrounds = Background::all();
     $about = About::all();
     $classes = Classe::all();
-    $trainers = Trainer::inRandomOrder()->limit(3)->get();
+    $trainers = Trainer::all();
+    $trainers2 = Trainer::inRandomOrder()->limit(1)->get();
+    $trainers3 = Trainer::inRandomOrder()->limit(1)->get();
     $galleries = Gallery::inRandomOrder()->limit(6)->get();
     $events = Event::all();
     $pricing = Pricing::all();
@@ -64,8 +69,70 @@ Route::get('/', function(){
     $testimonials = Testimonial::inRandomOrder()->limit(5)->get();
     $footer = Footer::all();
     $logo = Logo::all();
-    return view("site.home", compact("map","logo", "navitems", "backgrounds", "about", "classes", "trainers", "galleries", "events", "pricing", "testimonials", "footer"));
+    return view("site.home", compact("trainers2", "trainers3", "titres", "map","logo", "navitems", "backgrounds", "about", "classes", "trainers", "galleries", "events", "pricing", "testimonials", "footer"));
 });
+
+Route::get('/aboutus', function(){
+    $navitems = Nav::all();
+    $about = About::all();
+    $events = Event::all();
+    $testimonials = Testimonial::inRandomOrder()->limit(5)->get();
+    $footer = Footer::all();
+    $map = Map::first();
+    $logo = Logo::all();
+    $titres = Titre::all();
+    return view("site.about", compact("navitems", "about", "events", "testimonials", "footer", "map", "logo", "titres"));
+});
+
+Route::get('/classes', function(){
+    $titres = Titre::all();
+    $navitems = Nav::all();
+    $backgrounds = Background::all();
+    $about = About::all();
+    $classes = Classe::all();
+    $trainers = Trainer::all();
+    $trainers2 = Trainer::inRandomOrder()->limit(1)->get();
+    $trainers3 = Trainer::inRandomOrder()->limit(1)->get();
+    $galleries = Gallery::inRandomOrder()->limit(6)->get();
+    $events = Event::all();
+    $pricing = Pricing::all();
+    $map = Map::first();
+    $testimonials = Testimonial::inRandomOrder()->limit(5)->get();
+    $footer = Footer::all();
+    $logo = Logo::all();
+    return view("site.classes", compact("trainers2", "trainers3", "titres", "map","logo", "navitems", "backgrounds", "about", "classes", "trainers", "galleries", "events", "pricing", "testimonials", "footer"));
+});
+
+Route::get('/contact', function(){
+    $navitems = Nav::all();
+    $footer = Footer::all();
+    $map = Map::first();
+    $logo = Logo::all();
+    $titres = Titre::all();
+    return view("site.contact", compact("navitems", "footer", "map", "logo", "titres"));
+});
+
+Route::get('/gallery', function(){
+    $navitems = Nav::all();
+    $footer = Footer::all();
+    $galleries = Gallery::all()->pagination(9);
+    $map = Map::first();
+    $logo = Logo::all();
+    $titres = Titre::all();
+    return view("site.gallery", compact("navitems","galleries", "footer", "map", "logo", "titres"));
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('/back', function () {
     $user = User::all();
@@ -91,3 +158,4 @@ Route::resource('/back/about', AboutController::class)->middleware(["auth", "man
 Route::resource('/back/user', UserController::class)->middleware(["auth", "manager"]);
 Route::resource('/back/mail', MailController::class)->middleware(["auth", "manager"]);
 Route::resource('/back/newsletter', NewsletterController::class)->middleware(["auth", "admin"]);
+Route::resource('/inscription', InscriptionController::class);

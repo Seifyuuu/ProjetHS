@@ -52,6 +52,12 @@ class TrainerController extends Controller
         $trainer->url2 = $request->url2;
         $trainer->url3 = $request->url3;
         $trainer->url4 = $request->url4;
+        $eventall = Trainer::all();
+        foreach ($eventall as $item){
+            $item->type = 0;
+            $item->save();
+    
+    }
         $trainer->save();
         $request->file("img")->storePublicly("img", "public");
         return redirect()->route("trainer.index")->with("message", "Done! ");
@@ -102,6 +108,12 @@ class TrainerController extends Controller
         $trainer->url2 = $request->url2;
         $trainer->url3 = $request->url3;
         $trainer->url4 = $request->url4;
+        $eventall = Trainer::all();
+        foreach ($eventall as $item){
+            $item->type = 0;
+            $item->save();
+    }
+        $trainer->type = $request->type;
         $trainer->save();
         $request->file("img")->storePublicly("img", "public");
         return redirect()->route("trainer.index")->with("message", "Done! ");

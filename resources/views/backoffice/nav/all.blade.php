@@ -18,6 +18,8 @@
             </thead>
             <tbody>
                 @foreach ($nav as $item)
+                @can("view", $item)
+
                 <tr>
                     <th scope="row">{{$item->id}}</th>
                     <td>{{$item->name}}</td>
@@ -27,6 +29,7 @@
                         </div>
                     </td>
                 </tr>
+                @endcan
                 @endforeach
             </tbody>
         </table>
