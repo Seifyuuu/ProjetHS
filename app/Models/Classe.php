@@ -16,5 +16,5 @@ class Classe extends Model
         return $this->belongsTo(Inscription::class);
     }
 
-    
+   
 }

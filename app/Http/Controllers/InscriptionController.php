@@ -16,7 +16,7 @@ class InscriptionController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -38,7 +38,7 @@ class InscriptionController extends Controller
     public function store(Request $request)
     {
         $inscription = new Inscription();
-        $inscription->classe_id = $this;
+        $inscription->classe_id = $request->number;
         $inscription->user_id = Auth::user()->id;
         $inscription->save();
         return redirect()->route("home");

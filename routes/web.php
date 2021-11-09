@@ -24,6 +24,7 @@ use App\Models\Classe;
 use App\Models\Event;
 use App\Models\Footer;
 use App\Models\Gallery;
+use App\Models\Inscription;
 use App\Models\Logo;
 use App\Models\Map;
 use App\Models\Nav;
@@ -69,6 +70,8 @@ Route::get('/', function(){
     $testimonials = Testimonial::inRandomOrder()->limit(5)->get();
     $footer = Footer::all();
     $logo = Logo::all();
+
+
     return view("site.home", compact("trainers2", "trainers3", "titres", "map","logo", "navitems", "backgrounds", "about", "classes", "trainers", "galleries", "events", "pricing", "testimonials", "footer"));
 })->name("home");
 
@@ -91,8 +94,8 @@ Route::get('/classes', function(){
     $about = About::all();
     $classes = Classe::all();
     $trainers = Trainer::all();
-    $trainers2 = Trainer::inRandomOrder()->limit(1)->get();
-    $trainers3 = Trainer::inRandomOrder()->limit(1)->get();
+    $trainers2 = Trainer::inRandomOrder()->limit(3)->get();
+    $trainers3 = Trainer::inRandomOrder()->limit(3)->get();
     $galleries = Gallery::inRandomOrder()->limit(6)->get();
     $events = Event::all();
     $pricing = Pricing::all();
@@ -102,6 +105,8 @@ Route::get('/classes', function(){
     $logo = Logo::all();
     return view("site.classes", compact("trainers2", "trainers3", "titres", "map","logo", "navitems", "backgrounds", "about", "classes", "trainers", "galleries", "events", "pricing", "testimonials", "footer"));
 });
+
+
 
 Route::get('/contact', function(){
     $navitems = Nav::all();
